@@ -31,6 +31,17 @@ BASELINE:               173015
 1 READ 7 WRITE:         166808 / 0.9641
 4 READ 4 WRITE:         651887 / 3.768
 
+RWL_SpinWait
+BASELINE:               175719
+2 READ:                 347890 / 1.98
+1 READ 1 WRITE:         174232 / 0.9915
+4 READ:                 683145 / 3.888
+3 READ 1 WRITE:         175474 / 0.9986
+8 READ:                1314147 / 7.479
+7 READ 1 WRITE:        1199176 / 6.824
+1 READ 7 WRITE:         167586 / 0.9537
+4 READ 4 WRITE:         651624 / 3.708
+
 RWL_ConditionalVariable
 BASELINE:               171573
 2 READ:                 345827 / 2.016
