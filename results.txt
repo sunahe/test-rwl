@@ -1,0 +1,54 @@
+ExclusiveLock
+BASELINE:               172406
+2 READ:                 153827 / 0.8922
+1 READ 1 WRITE:         152414 / 0.884
+4 READ:                 156072 / 0.9053
+3 READ 1 WRITE:         152717 / 0.8858
+8 READ:                 157837 / 0.9155
+7 READ 1 WRITE:         155239 / 0.9004
+1 READ 7 WRITE:         151019 / 0.8759
+4 READ 4 WRITE:         150640 / 0.8738
+
+RWL_DotNet
+BASELINE:               171382
+2 READ:                 344104 / 2.008
+1 READ 1 WRITE:         128909 / 0.7522
+4 READ:                 689272 / 4.022
+3 READ 1 WRITE:         129038 / 0.7529
+8 READ:                1307024 / 7.626
+7 READ 1 WRITE:         347210 / 2.026
+1 READ 7 WRITE:         131098 / 0.7649
+4 READ 4 WRITE:         131840 / 0.7693
+
+RWL_Spin
+BASELINE:               173015
+2 READ:                 344395 / 1.991
+1 READ 1 WRITE:         173643 / 1.004
+4 READ:                 694318 / 4.013
+3 READ 1 WRITE:         173869 / 1.005
+8 READ:                1375045 / 7.948
+7 READ 1 WRITE:        1167333 / 6.747
+1 READ 7 WRITE:         166808 / 0.9641
+4 READ 4 WRITE:         651887 / 3.768
+
+RWL_ConditionalVariable
+BASELINE:               171573
+2 READ:                 345827 / 2.016
+1 READ 1 WRITE:         138168 / 0.8053
+4 READ:                 678979 / 3.957
+3 READ 1 WRITE:         138388 / 0.8066
+8 READ:                1297331 / 7.561
+7 READ 1 WRITE:         960454 / 5.598
+1 READ 7 WRITE:         134993 / 0.7868
+4 READ 4 WRITE:         511332 / 2.98
+
+RWL_Hybrid
+BASELINE:               174354
+2 READ:                 349697 / 2.006
+1 READ 1 WRITE:         148697 / 0.8528
+4 READ:                 694143 / 3.981
+3 READ 1 WRITE:         146924 / 0.8427
+8 READ:                1344033 / 7.709
+7 READ 1 WRITE:         159621 / 0.9155
+1 READ 7 WRITE:         151010 / 0.8661
+4 READ 4 WRITE:         148326 / 0.8507
