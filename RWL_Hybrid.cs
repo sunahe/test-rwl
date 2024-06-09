@@ -11,6 +11,12 @@ class RWL_Hybrid
         return new ReadLockHandle(this);
     }
 
+    public WriteLockHandle GetShortReadLock()
+    {
+        Monitor.Enter(this);
+        return new WriteLockHandle(this);
+    }
+
     public WriteLockHandle GetWriteLock()
     {
         Monitor.Enter(this);

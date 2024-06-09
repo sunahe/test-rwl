@@ -1,10 +1,8 @@
 class ExclusiveLock
 {
-    public LockHandle GetReadLock()
-    {
-        Monitor.Enter(this);
-        return new LockHandle(this);
-    }
+    public LockHandle GetReadLock() => GetWriteLock();
+
+    public LockHandle GetShortReadLock() => GetWriteLock();
 
     public LockHandle GetWriteLock()
     {

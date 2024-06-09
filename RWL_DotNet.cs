@@ -8,6 +8,8 @@ class RWL_DotNet
         return new ReadLockHandle(_lock);
     }
 
+    public ReadLockHandle GetShortReadLock() => GetReadLock();
+
     public WriteLockHandle GetWriteLock()
     {
        _lock.EnterWriteLock();

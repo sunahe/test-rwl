@@ -12,6 +12,8 @@ class RWL_Spin
         }
     }
 
+    public ReadLockHandle GetShortReadLock() => GetReadLock();
+
     public WriteLockHandle GetWriteLock()
     {
         while (true)

@@ -1,6 +1,6 @@
 ﻿Console.WriteLine($"=== {new TestState().Lock.GetType().Name} ===");
 
-void DoWork(TestState state)
+void DoShortWork(TestState state)
 {
     int x = 0;
     for (int i = 0; i < 10; i++)
@@ -11,19 +11,41 @@ void DoWork(TestState state)
     Interlocked.Increment(ref state.Ops);
 }
 
-void Worker(TestState state, double writePercentage)
+void DoWork(TestState state)
 {
+    int x = 0;
+    for (int i = 0; i < 10_000; i++)
+    {
+        x += i % 973;
+    }
+
+    Interlocked.Increment(ref state.Ops);
+}
+
+void Worker(int workerIndex, TestState state, double writePercentage, double shortWorkPercentage)
+{
+    Random random = new Random(workerIndex);
     while (state.cts.IsCancellationRequested is false)
     {
-        double x = Random.Shared.Next();
-        if (x < writePercentage)
+        if (random.NextDouble() < writePercentage)
         {
             using (state.Lock.GetWriteLock())
             {
                 if (state.FLAG) throw new Exception("WRITER BUG");
                 state.FLAG = true;
-                DoWork(state);
+                if (random.NextDouble() < shortWorkPercentage)
+                    DoShortWork(state);
+                else
+                    DoWork(state);
                 state.FLAG = false;
+            }
+        }
+        else if (random.NextDouble() < shortWorkPercentage)
+        {
+            using (state.Lock.GetShortReadLock())
+            {
+                if (state.FLAG) throw new Exception("READER BUG");
+                DoShortWork(state);
             }
         }
         else
@@ -37,15 +59,19 @@ void Worker(TestState state, double writePercentage)
     }
 }
 
-long GetBaseline()
+long GetBaseline(double shortWorkPercentage)
 {
     var state = new TestState();
     var worker = Task.Run(() =>
     {
+        Random random = new Random(0);
         while (state.cts.IsCancellationRequested is false)
         {
-            _ = Random.Shared.Next();
-            DoWork(state);
+            _ = random.NextDouble();
+            if (random.NextDouble() < shortWorkPercentage)
+                DoShortWork(state);
+            else
+                DoWork(state);
         }
     });
     Thread.Sleep(1);
@@ -56,12 +82,12 @@ long GetBaseline()
     return state.Ops;
 }
 
-long GetOps(int workerCount, double writePercentage)
+long GetOps(int workerCount, double writePercentage, double shortWorkPercentage)
 {
     var state = new TestState();
     var workers = new Task[workerCount];
     for (int i = 0; i < workerCount; i++)
-        workers[i] = Task.Run(() => Worker(state, writePercentage));
+        workers[i] = Task.Run(() => Worker(i, state, writePercentage, shortWorkPercentage));
     Thread.Sleep(1);
     state.Ops = 0;
     Thread.Sleep(1000);
@@ -70,28 +96,36 @@ long GetOps(int workerCount, double writePercentage)
     return state.Ops;
 }
 
-long ops = GetBaseline();
-Console.WriteLine($"BASELINE: {ops,22} - {1_000_000.0 / ops:F2} us/op");
-double baseLine = ops;
-ops = GetOps(1, 0);
-Console.WriteLine($"1 WORKER: {ops,22} / {ops / baseLine:F4}");
-ops = GetOps(2, 0);
-Console.WriteLine($"2 WORKERS: {ops,21} / {ops / baseLine:F4}");
-ops = GetOps(2, 0.5);
-Console.WriteLine($"2 WORKERS (50% writes): {ops,8} / {ops / baseLine:F4}");
-ops = GetOps(4, 0);
-Console.WriteLine($"4 WORKERS: {ops,21} / {ops / baseLine:F4}");
-ops = GetOps(4, 0.5);
-Console.WriteLine($"4 WORKERS (50% writes): {ops,8} / {ops / baseLine:F4}");
-ops = GetOps(8, 0);
-Console.WriteLine($"8 WORKERS: {ops,21} / {ops / baseLine:F4}");
-ops = GetOps(8, 0.1);
-Console.WriteLine($"8 WORKERS (10% writes): {ops,8} / {ops / baseLine:F4}");
-ops = GetOps(8, 0.5);
-Console.WriteLine($"8 WORKERS (50% writes): {ops,8} / {ops / baseLine:F4}");
-ops = GetOps(8, 0.9);
-Console.WriteLine($"8 WORKERS (90% writes): {ops,8} / {ops / baseLine:F4}");
+void RunTests(double shortWorkPercentage)
+{
+    long ops = GetBaseline(shortWorkPercentage);
+    Console.WriteLine($"BASELINE ({shortWorkPercentage * 100,3:G0}% sr): {ops,12} - {1_000_000.0 / ops:F2} us/op");
+    double baseLine = ops;
+    ops = GetOps(1, 0, shortWorkPercentage);
+    Console.WriteLine($"1 WORKER: {ops,22} / {ops / baseLine:F4}");
+    ops = GetOps(2, 0, shortWorkPercentage);
+    Console.WriteLine($"2 WORKERS: {ops,21} / {ops / baseLine:F4}");
+    ops = GetOps(2, 0.5, shortWorkPercentage);
+    Console.WriteLine($"2 WORKERS (50% writes): {ops,8} / {ops / baseLine:F4}");
+    ops = GetOps(4, 0, shortWorkPercentage);
+    Console.WriteLine($"4 WORKERS: {ops,21} / {ops / baseLine:F4}");
+    ops = GetOps(4, 0.5, shortWorkPercentage);
+    Console.WriteLine($"4 WORKERS (50% writes): {ops,8} / {ops / baseLine:F4}");
+    ops = GetOps(8, 0, shortWorkPercentage);
+    Console.WriteLine($"8 WORKERS: {ops,21} / {ops / baseLine:F4}");
+    ops = GetOps(8, 0.1, shortWorkPercentage);
+    Console.WriteLine($"8 WORKERS (10% writes): {ops,8} / {ops / baseLine:F4}");
+    ops = GetOps(8, 0.5, shortWorkPercentage);
+    Console.WriteLine($"8 WORKERS (50% writes): {ops,8} / {ops / baseLine:F4}");
+    ops = GetOps(8, 0.9, shortWorkPercentage);
+    Console.WriteLine($"8 WORKERS (90% writes): {ops,8} / {ops / baseLine:F4}");
+    Console.WriteLine();
+}
 
+RunTests(0);
+RunTests(0.5);
+RunTests(0.95);
+RunTests(1);
 
 class TestState
 {

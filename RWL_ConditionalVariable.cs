@@ -15,6 +15,8 @@ class RWL_ConditionalVariable
         }
     }
 
+    public ReadLockHandle GetShortReadLock() => GetReadLock();
+
     public WriteLockHandle GetWriteLock()
     {
         lock (this)
