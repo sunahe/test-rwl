@@ -43,6 +43,51 @@ BASELINE (100% sr):     95221843 - 0.01 us/op
 8 WORKERS (50% writes): 15829440 / 0.1662
 8 WORKERS (90% writes): 15561645 / 0.1634
 
+=== ExclusiveSpinLock ===
+BASELINE (  0% sr):       175716 - 5.69 us/op
+1 WORKER:                 169336 / 0.9637
+2 WORKERS:                174645 / 0.9939
+2 WORKERS (50% writes):   173502 / 0.9874
+4 WORKERS:                173579 / 0.9878
+4 WORKERS (50% writes):   173008 / 0.9846
+8 WORKERS:                175990 / 1.0016
+8 WORKERS (10% writes):   175171 / 0.9969
+8 WORKERS (50% writes):   173028 / 0.9847
+8 WORKERS (90% writes):   170481 / 0.9702
+
+BASELINE ( 50% sr):       351043 - 2.85 us/op
+1 WORKER:                 345555 / 0.9844
+2 WORKERS:                346103 / 0.9859
+2 WORKERS (50% writes):   339232 / 0.9664
+4 WORKERS:                340573 / 0.9702
+4 WORKERS (50% writes):   334165 / 0.9519
+8 WORKERS:                339335 / 0.9666
+8 WORKERS (10% writes):   343263 / 0.9778
+8 WORKERS (50% writes):   341380 / 0.9725
+8 WORKERS (90% writes):   346843 / 0.9880
+
+BASELINE ( 95% sr):      3442420 - 0.29 us/op
+1 WORKER:                2845684 / 0.8267
+2 WORKERS:               2885863 / 0.8383
+2 WORKERS (50% writes):  2876899 / 0.8357
+4 WORKERS:               2825542 / 0.8208
+4 WORKERS (50% writes):  2916671 / 0.8473
+8 WORKERS:               2834483 / 0.8234
+8 WORKERS (10% writes):  2833603 / 0.8231
+8 WORKERS (50% writes):  2858928 / 0.8305
+8 WORKERS (90% writes):  2892350 / 0.8402
+
+BASELINE (100% sr):     98796783 - 0.01 us/op
+1 WORKER:               17278186 / 0.1749
+2 WORKERS:              17773903 / 0.1799
+2 WORKERS (50% writes): 18135581 / 0.1836
+4 WORKERS:              18789204 / 0.1902
+4 WORKERS (50% writes): 17866166 / 0.1808
+8 WORKERS:              15768642 / 0.1596
+8 WORKERS (10% writes): 17963708 / 0.1818
+8 WORKERS (50% writes): 15707592 / 0.1590
+8 WORKERS (90% writes): 15752955 / 0.1594
+
 === RWL_DotNet ===
 BASELINE (  0% sr):       172289 - 5.80 us/op
 1 WORKER:                 168093 / 0.9756
@@ -267,3 +312,48 @@ BASELINE (100% sr):     95355772 - 0.01 us/op
 8 WORKERS (10% writes): 24439031 / 0.2563
 8 WORKERS (50% writes): 20646271 / 0.2165
 8 WORKERS (90% writes): 23176942 / 0.2431
+
+=== RWL_HybridSpinLock ===
+BASELINE (  0% sr):       175123 - 5.71 us/op
+1 WORKER:                 169117 / 0.9657
+2 WORKERS:                342946 / 1.9583
+2 WORKERS (50% writes):   144795 / 0.8268
+4 WORKERS:                683947 / 3.9055
+4 WORKERS (50% writes):   142298 / 0.8126
+8 WORKERS:               1289240 / 7.3619
+8 WORKERS (10% writes):    74930 / 0.4279
+8 WORKERS (50% writes):   140141 / 0.8002
+8 WORKERS (90% writes):   154681 / 0.8833
+
+BASELINE ( 50% sr):       357039 - 2.80 us/op
+1 WORKER:                 342591 / 0.9595
+2 WORKERS:                682068 / 1.9103
+2 WORKERS (50% writes):   254905 / 0.7139
+4 WORKERS:               1357280 / 3.8015
+4 WORKERS (50% writes):   250128 / 0.7006
+8 WORKERS:               2669142 / 7.4758
+8 WORKERS (10% writes):   172024 / 0.4818
+8 WORKERS (50% writes):   213308 / 0.5974
+8 WORKERS (90% writes):   324688 / 0.9094
+
+BASELINE ( 95% sr):      3429247 - 0.29 us/op
+1 WORKER:                2905318 / 0.8472
+2 WORKERS:               4986952 / 1.4542
+2 WORKERS (50% writes):  2384019 / 0.6952
+4 WORKERS:               7433888 / 2.1678
+4 WORKERS (50% writes):  1814454 / 0.5291
+8 WORKERS:               8299124 / 2.4201
+8 WORKERS (10% writes):   352302 / 0.1027
+8 WORKERS (50% writes):  1470787 / 0.4289
+8 WORKERS (90% writes):  2670821 / 0.7788
+
+BASELINE (100% sr):     98014708 - 0.01 us/op
+1 WORKER:               16755566 / 0.1709
+2 WORKERS:              19035250 / 0.1942
+2 WORKERS (50% writes): 16896644 / 0.1724
+4 WORKERS:              18505183 / 0.1888
+4 WORKERS (50% writes): 15713531 / 0.1603
+8 WORKERS:              16139816 / 0.1647
+8 WORKERS (10% writes): 18144576 / 0.1851
+8 WORKERS (50% writes): 16815106 / 0.1716
+8 WORKERS (90% writes): 15888129 / 0.1621

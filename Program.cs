@@ -131,6 +131,6 @@ class TestState
 {
     public bool FLAG;
     public long Ops;
-    public RWL_Hybrid Lock = new();
+    public ExclusiveSpinLock Lock = new();
     public CancellationTokenSource cts = new();
 }
