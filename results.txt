@@ -224,46 +224,46 @@ BASELINE (100% sr):     97496834 - 0.01 us/op
 8 WORKERS (90% writes):  6007329 / 0.0616
 
 === RWL_Hybrid ===
-BASELINE (  0% sr):       172444 - 5.80 us/op
-1 WORKER:                 167975 / 0.9741
-2 WORKERS:                338739 / 1.9643
-2 WORKERS (50% writes):   192332 / 1.1153
-4 WORKERS:                678337 / 3.9337
-4 WORKERS (50% writes):   191393 / 1.1099
-8 WORKERS:               1251821 / 7.2593
-8 WORKERS (10% writes):   470525 / 2.7286
-8 WORKERS (50% writes):   192170 / 1.1144
-8 WORKERS (90% writes):   157151 / 0.9113
+BASELINE (  0% sr):       171579 - 5.83 us/op
+1 WORKER:                 168324 / 0.9810
+2 WORKERS:                340793 / 1.9862
+2 WORKERS (50% writes):   189981 / 1.1073
+4 WORKERS:                678881 / 3.9567
+4 WORKERS (50% writes):   192235 / 1.1204
+8 WORKERS:               1344567 / 7.8364
+8 WORKERS (10% writes):   472753 / 2.7553
+8 WORKERS (50% writes):   191339 / 1.1152
+8 WORKERS (90% writes):   141957 / 0.8274
 
-BASELINE ( 50% sr):       354438 - 2.82 us/op
-1 WORKER:                 340657 / 0.9611
-2 WORKERS:                682494 / 1.9256
-2 WORKERS (50% writes):   386390 / 1.0901
-4 WORKERS:               1373957 / 3.8764
-4 WORKERS (50% writes):   385029 / 1.0863
-8 WORKERS:               2685700 / 7.5773
-8 WORKERS (10% writes):   901738 / 2.5441
-8 WORKERS (50% writes):   382628 / 1.0795
-8 WORKERS (90% writes):   332342 / 0.9377
+BASELINE ( 50% sr):       346522 - 2.89 us/op
+1 WORKER:                 349926 / 1.0098
+2 WORKERS:                690773 / 1.9934
+2 WORKERS (50% writes):   341380 / 0.9852
+4 WORKERS:               1372945 / 3.9621
+4 WORKERS (50% writes):   344476 / 0.9941
+8 WORKERS:               2726663 / 7.8687
+8 WORKERS (10% writes):   843189 / 2.4333
+8 WORKERS (50% writes):   372141 / 1.0739
+8 WORKERS (90% writes):   327243 / 0.9444
 
-BASELINE ( 95% sr):      3434756 - 0.29 us/op
-1 WORKER:                3324632 / 0.9679
-2 WORKERS:               6446217 / 1.8768
-2 WORKERS (50% writes):  3182794 / 0.9266
-4 WORKERS:              12284700 / 3.5766
-4 WORKERS (50% writes):  3093309 / 0.9006
-8 WORKERS:              17981434 / 5.2351
-8 WORKERS (10% writes):  3945636 / 1.1487
-8 WORKERS (50% writes):  3139672 / 0.9141
-8 WORKERS (90% writes):  3078814 / 0.8964
+BASELINE ( 95% sr):      3407495 - 0.29 us/op
+1 WORKER:                3190180 / 0.9362
+2 WORKERS:               6277766 / 1.8423
+2 WORKERS (50% writes):  3112821 / 0.9135
+4 WORKERS:              12024878 / 3.5289
+4 WORKERS (50% writes):  3020153 / 0.8863
+8 WORKERS:              16804037 / 4.9315
+8 WORKERS (10% writes):  3677104 / 1.0791
+8 WORKERS (50% writes):  3091960 / 0.9074
+8 WORKERS (90% writes):  3051056 / 0.8954
 
-BASELINE (100% sr):     97397049 - 0.01 us/op
-1 WORKER:               50549869 / 0.5190
-2 WORKERS:              39993282 / 0.4106
-2 WORKERS (50% writes): 35340467 / 0.3628
-4 WORKERS:              25156326 / 0.2583
-4 WORKERS (50% writes): 26444086 / 0.2715
-8 WORKERS:              25527764 / 0.2621
-8 WORKERS (10% writes): 23286461 / 0.2391
-8 WORKERS (50% writes): 24474802 / 0.2513
-8 WORKERS (90% writes): 25292860 / 0.2597
+BASELINE (100% sr):     95355772 - 0.01 us/op
+1 WORKER:               50472208 / 0.5293
+2 WORKERS:              38223137 / 0.4008
+2 WORKERS (50% writes): 32100547 / 0.3366
+4 WORKERS:              23999006 / 0.2517
+4 WORKERS (50% writes): 23153500 / 0.2428
+8 WORKERS:              24835576 / 0.2605
+8 WORKERS (10% writes): 24439031 / 0.2563
+8 WORKERS (50% writes): 20646271 / 0.2165
+8 WORKERS (90% writes): 23176942 / 0.2431

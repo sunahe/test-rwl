@@ -20,9 +20,13 @@ class RWL_Hybrid
     public WriteLockHandle GetWriteLock()
     {
         Monitor.Enter(this);
-        while (readerCount > 0)
+        if (readerCount > 0)
         {
-            // TODO: Spin
+            SpinWait spinWait = new();
+            do
+            {
+                spinWait.SpinOnce();
+            } while (readerCount > 0);
         }
 
         return new WriteLockHandle(this);
