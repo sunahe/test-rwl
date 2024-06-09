@@ -1,65 +1,137 @@
-ExclusiveLock
-BASELINE:               172406
-2 READ:                 153827 / 0.8922
-1 READ 1 WRITE:         152414 / 0.884
-4 READ:                 156072 / 0.9053
-3 READ 1 WRITE:         152717 / 0.8858
-8 READ:                 157837 / 0.9155
-7 READ 1 WRITE:         155239 / 0.9004
-1 READ 7 WRITE:         151019 / 0.8759
-4 READ 4 WRITE:         150640 / 0.8738
+=== ExclusiveLock ===
+BASELINE:                 169893 - 5.89 us/op
+1 WORKER:                 170024 / 1.0008
+2 WORKERS:                155145 / 0.9132
+2 WORKERS (50% writes):   156900 / 0.9235
+4 WORKERS:                155974 / 0.9181
+4 WORKERS (50% writes):   156692 / 0.9223
+8 WORKERS:                156850 / 0.9232
+8 WORKERS (10% writes):   156045 / 0.9185
+8 WORKERS (50% writes):   157653 / 0.9280
+8 WORKERS (90% writes):   160772 / 0.9463
 
-RWL_DotNet
-BASELINE:               171382
-2 READ:                 344104 / 2.008
-1 READ 1 WRITE:         128909 / 0.7522
-4 READ:                 689272 / 4.022
-3 READ 1 WRITE:         129038 / 0.7529
-8 READ:                1307024 / 7.626
-7 READ 1 WRITE:         347210 / 2.026
-1 READ 7 WRITE:         131098 / 0.7649
-4 READ 4 WRITE:         131840 / 0.7693
+BASELINE:              118544452 - 0.01 us/op
+1 WORKER:               54176171 / 0.4570
+2 WORKERS:              33038938 / 0.2787
+2 WORKERS (50% writes):  8987796 / 0.0758
+4 WORKERS:              18970678 / 0.1600
+4 WORKERS (50% writes): 19269615 / 0.1626
+8 WORKERS:              14973030 / 0.1263
+8 WORKERS (10% writes): 15526943 / 0.1310
+8 WORKERS (50% writes): 18355646 / 0.1548
+8 WORKERS (90% writes): 16462572 / 0.1389
 
-RWL_Spin
-BASELINE:               173015
-2 READ:                 344395 / 1.991
-1 READ 1 WRITE:         173643 / 1.004
-4 READ:                 694318 / 4.013
-3 READ 1 WRITE:         173869 / 1.005
-8 READ:                1375045 / 7.948
-7 READ 1 WRITE:        1167333 / 6.747
-1 READ 7 WRITE:         166808 / 0.9641
-4 READ 4 WRITE:         651887 / 3.768
+=== RWL_DotNet ===
+BASELINE:                 171420 - 5.83 us/op
+1 WORKER:                 170377 / 0.9939
+2 WORKERS:                339091 / 1.9781
+2 WORKERS (50% writes):   338302 / 1.9735
+4 WORKERS:                693702 / 4.0468
+4 WORKERS (50% writes):   693556 / 4.0459
+8 WORKERS:               1351329 / 7.8831
+8 WORKERS (10% writes):  1357221 / 7.9175
+8 WORKERS (50% writes):  1344585 / 7.8438
+8 WORKERS (90% writes):  1357743 / 7.9206
 
-RWL_SpinWait
-BASELINE:               175719
-2 READ:                 347890 / 1.98
-1 READ 1 WRITE:         174232 / 0.9915
-4 READ:                 683145 / 3.888
-3 READ 1 WRITE:         175474 / 0.9986
-8 READ:                1314147 / 7.479
-7 READ 1 WRITE:        1199176 / 6.824
-1 READ 7 WRITE:         167586 / 0.9537
-4 READ 4 WRITE:         651624 / 3.708
+BASELINE:              118446030 - 0.01 us/op
+1 WORKER:               39429186 / 0.3329
+2 WORKERS:              27329859 / 0.2307
+2 WORKERS (50% writes): 32852763 / 0.2774
+4 WORKERS:              29640033 / 0.2502
+4 WORKERS (50% writes): 23505012 / 0.1984
+8 WORKERS:              14189004 / 0.1198
+8 WORKERS (10% writes): 13512178 / 0.1141
+8 WORKERS (50% writes): 19998948 / 0.1688
+8 WORKERS (90% writes): 16948168 / 0.1431
 
-RWL_ConditionalVariable
-BASELINE:               171573
-2 READ:                 345827 / 2.016
-1 READ 1 WRITE:         138168 / 0.8053
-4 READ:                 678979 / 3.957
-3 READ 1 WRITE:         138388 / 0.8066
-8 READ:                1297331 / 7.561
-7 READ 1 WRITE:         960454 / 5.598
-1 READ 7 WRITE:         134993 / 0.7868
-4 READ 4 WRITE:         511332 / 2.98
+=== RWL_Spin ===
+BASELINE:                 174342 - 5.74 us/op
+1 WORKER:                 170693 / 0.9791
+2 WORKERS:                340092 / 1.9507
+2 WORKERS (50% writes):   339912 / 1.9497
+4 WORKERS:                681519 / 3.9091
+4 WORKERS (50% writes):   690403 / 3.9600
+8 WORKERS:               1345931 / 7.7201
+8 WORKERS (10% writes):  1317700 / 7.5581
+8 WORKERS (50% writes):  1340819 / 7.6907
+8 WORKERS (90% writes):  1332887 / 7.6452
 
-RWL_Hybrid
-BASELINE:               174354
-2 READ:                 349697 / 2.006
-1 READ 1 WRITE:         148697 / 0.8528
-4 READ:                 694143 / 3.981
-3 READ 1 WRITE:         146924 / 0.8427
-8 READ:                1344033 / 7.709
-7 READ 1 WRITE:         159621 / 0.9155
-1 READ 7 WRITE:         151010 / 0.8661
-4 READ 4 WRITE:         148326 / 0.8507
+BASELINE:              117851299 - 0.01 us/op
+1 WORKER:               55936806 / 0.4746
+2 WORKERS:              16270526 / 0.1381
+2 WORKERS (50% writes): 16722677 / 0.1419
+4 WORKERS:              17050996 / 0.1447
+4 WORKERS (50% writes): 11185683 / 0.0949
+8 WORKERS:              16554415 / 0.1405
+8 WORKERS (10% writes): 15650573 / 0.1328
+8 WORKERS (50% writes): 15478531 / 0.1313
+8 WORKERS (90% writes): 15295717 / 0.1298
+
+=== RWL_SpinWait ===
+BASELINE:                 172700 - 5.79 us/op
+1 WORKER:                 148223 / 0.8583
+2 WORKERS:                301376 / 1.7451
+2 WORKERS (50% writes):   300023 / 1.7372
+4 WORKERS:                599815 / 3.4732
+4 WORKERS (50% writes):   601850 / 3.4849
+8 WORKERS:               1177676 / 6.8192
+8 WORKERS (10% writes):  1191206 / 6.8975
+8 WORKERS (50% writes):  1176725 / 6.8137
+8 WORKERS (90% writes):  1397359 / 8.0913
+
+BASELINE:              118516368 - 0.01 us/op
+1 WORKER:               55822555 / 0.4710
+2 WORKERS:              16830129 / 0.1420
+2 WORKERS (50% writes): 12376120 / 0.1044
+4 WORKERS:              18915111 / 0.1596
+4 WORKERS (50% writes): 19182784 / 0.1619
+8 WORKERS:              15313382 / 0.1292
+8 WORKERS (10% writes): 14648414 / 0.1236
+8 WORKERS (50% writes): 10431447 / 0.0880
+8 WORKERS (90% writes):  9638481 / 0.0813
+
+=== RWL_ConditionalVariable ===
+BASELINE:                 172197 - 5.81 us/op
+1 WORKER:                 169470 / 0.9842
+2 WORKERS:                346607 / 2.0129
+2 WORKERS (50% writes):   348507 / 2.0239
+4 WORKERS:                690182 / 4.0081
+4 WORKERS (50% writes):   692803 / 4.0233
+8 WORKERS:               1360002 / 7.8979
+8 WORKERS (10% writes):  1367038 / 7.9388
+8 WORKERS (50% writes):  1359828 / 7.8969
+8 WORKERS (90% writes):  1310596 / 7.6110
+
+BASELINE:              121508420 - 0.01 us/op
+1 WORKER:               19549189 / 0.1609
+2 WORKERS:              10502978 / 0.0864
+2 WORKERS (50% writes): 11564866 / 0.0952
+4 WORKERS:               7510723 / 0.0618
+4 WORKERS (50% writes):  8213503 / 0.0676
+8 WORKERS:               8569353 / 0.0705
+8 WORKERS (10% writes):  5799688 / 0.0477
+8 WORKERS (50% writes):  5980322 / 0.0492
+8 WORKERS (90% writes):  8442568 / 0.0695
+
+=== RWL_Hybrid ===
+BASELINE:                 170932 - 5.85 us/op
+1 WORKER:                 175192 / 1.0249
+2 WORKERS:                344214 / 2.0137
+2 WORKERS (50% writes):   346471 / 2.0270
+4 WORKERS:                685653 / 4.0113
+4 WORKERS (50% writes):   696673 / 4.0757
+8 WORKERS:               1364476 / 7.9826
+8 WORKERS (10% writes):  1362941 / 7.9736
+8 WORKERS (50% writes):  1357019 / 7.9389
+8 WORKERS (90% writes):  1357391 / 7.9411
+
+BASELINE:              118583134 - 0.01 us/op
+1 WORKER:               33672766 / 0.2840
+2 WORKERS:              10071873 / 0.0849
+2 WORKERS (50% writes): 12142123 / 0.1024
+4 WORKERS:               5362632 / 0.0452
+4 WORKERS (50% writes):  6795311 / 0.0573
+8 WORKERS:               6445776 / 0.0544
+8 WORKERS (10% writes):  5918888 / 0.0499
+8 WORKERS (50% writes):  6825531 / 0.0576
+8 WORKERS (90% writes):  6509824 / 0.0549

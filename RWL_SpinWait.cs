@@ -10,7 +10,7 @@ class RWL_SpinWait
             var cnt = readerCount;
             if (cnt < int.MaxValue && Interlocked.CompareExchange(ref readerCount, cnt + 1, cnt) == cnt)
                 return new ReadLockHandle(this);
-            spinWait.SpinOnce();
+            spinWait.SpinOnce(10);
         }
     }
 
